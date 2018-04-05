@@ -1,0 +1,39 @@
+<ifModule mod_rewrite.c>
+RewriteEngine on
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_URI} !(.*)/$
+
+ErrorDocument 404 /Bubbo/404.php
+ErrorDocument 500 /Bubbo/404.php
+</ifModule>
+
+RewriteEngine on 
+RewriteRule ^(.*)\.html $1\.php 
+
+RewriteRule ^index$ ./index.php
+RewriteRule ^home(|/)$ ./home.php
+RewriteRule ^home/settings(|/)$ ./settings.php
+RewriteRule ^home/story(|/)$ ./story.php
+RewriteRule ^profil/([^/]+)(|/)$ ./profil.php?username=$1
+RewriteRule ^logout$ ./logout.php
+
+RewriteRule ^beta-access$ ./register.php
+RewriteRule ^fdct-overview$ ./overview.php
+
+RewriteRule ^community$ ./community.php
+RewriteRule ^community/personal(|/)$ ./team.php
+RewriteRule ^community/jobcenter(|/)$ ./jobcenter.php
+RewriteRule ^community/stats(|/)$ ./stats.php
+RewriteRule ^community/event(|/)$ ./topuser.php
+
+RewriteRule ^archiv(|/)$ ./archiv_2.php
+RewriteRule ^archiv/lexikon(|/)$ ./lexikon.php
+RewriteRule ^archiv/lexikon/([^/]+)(|/)$ ./lexikon_eintrag.php?id=$1
+RewriteRule ^archiv/news(|/)$ ./archiv.php
+RewriteRule ^archiv/news/([^/]+)(|/)$ ./news.php?id=$1
+RewriteRule ^archiv/news/cat/([^/]+)(|/)$ ./news_kategorie.php?category=$1 
+
+RewriteRule ^extras(|/)$ extras.php
+RewriteRule ^extras/avatar(|/)$ ./avatargen.php
+RewriteRule ^([^\.]+)$ $1.php [NC,L]
